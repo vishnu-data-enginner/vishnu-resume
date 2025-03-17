@@ -23,7 +23,7 @@
         body {
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
             background: var(--dark-gradient);
             color: #e2e8f0;
         }
@@ -164,16 +164,27 @@
             top: 1rem;
             right: 1rem;
             z-index: 100;
-            padding: 0.5rem;
+            padding: 0.75rem;
             border-radius: 50%;
             cursor: pointer;
-            transition: transform 0.2s ease;
+            transition: all 0.3s ease;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
         }
 
         .theme-switch:hover {
             transform: scale(1.1);
+        }
+
+        .dark-mode .theme-switch {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .light-mode .theme-switch {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(0, 0, 0, 0.1);
         }
 
         .contact-link {
@@ -486,13 +497,19 @@
                 toggleTheme() {
                     this.isDark = !this.isDark;
                     document.body.className = this.isDark ? 'dark-mode' : 'light-mode';
+                    localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
                 }
             },
             mounted() {
-                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    this.isDark = true;
-                    document.body.className = 'dark-mode';
+                // Check for saved theme preference
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme) {
+                    this.isDark = savedTheme === 'dark';
+                } else {
+                    // Check system preference
+                    this.isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
                 }
+                document.body.className = this.isDark ? 'dark-mode' : 'light-mode';
             }
         }).mount('#app')
     </script>
