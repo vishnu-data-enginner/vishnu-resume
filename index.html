@@ -6,31 +6,41 @@
     <title>Vishnu Nagabushnam - Resume</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --secondary-gradient: linear-gradient(135deg, #f472b6 0%, #ec4899 100%);
+            --dark-gradient: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+        
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: var(--dark-gradient);
             min-height: 100vh;
+            color: #e2e8f0;
         }
         
         .resume-container {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(30, 41, 59, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .resume-container:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
         
         .section-title {
             position: relative;
             display: inline-block;
             padding-bottom: 0.5rem;
+            color: #f472b6;
         }
         
         .section-title::after {
@@ -40,16 +50,19 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            background: var(--secondary-gradient);
             border-radius: 2px;
         }
         
         .experience-card {
-            border-left: 3px solid #3b82f6;
+            border-left: 3px solid #f472b6;
             padding-left: 1.5rem;
             margin-bottom: 2rem;
             transition: all 0.3s ease;
             position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
         }
         
         .experience-card::before {
@@ -60,35 +73,37 @@
             width: 9px;
             height: 9px;
             border-radius: 50%;
-            background: #3b82f6;
+            background: #f472b6;
             transition: all 0.3s ease;
         }
         
         .experience-card:hover {
-            background-color: #f8fafc;
+            background: rgba(255, 255, 255, 0.1);
             padding-left: 2rem;
+            transform: translateX(5px);
         }
         
         .experience-card:hover::before {
             transform: scale(1.5);
-            background: #60a5fa;
+            background: #ec4899;
         }
         
         .skill-tag {
             display: inline-block;
             padding: 0.5rem 1rem;
             margin: 0.25rem;
-            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
-            color: #3b82f6;
+            background: var(--primary-gradient);
+            color: white;
             border-radius: 9999px;
             font-size: 0.875rem;
             transition: all 0.3s ease;
-            border: 1px solid rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
         .skill-tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(59, 130, 246, 0.1);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
         
         .tech-stack {
@@ -100,86 +115,115 @@
         
         .tech-item {
             font-size: 0.875rem;
-            color: #4b5563;
-            background: #f3f4f6;
+            color: #e2e8f0;
+            background: rgba(255, 255, 255, 0.1);
             padding: 0.25rem 0.75rem;
             border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .certification-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 0.5rem;
-            padding: 1rem;
+            padding: 1.5rem;
             margin-bottom: 1rem;
             transition: all 0.3s ease;
-            border: 1px solid rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .certification-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(59, 130, 246, 0.1);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
         
         .education-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 0.5rem;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
             transition: all 0.3s ease;
-            border: 1px solid rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .education-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(59, 130, 246, 0.1);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
         
         .animate-fade-in {
             animation: fadeIn 0.5s ease forwards;
         }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hover-lift {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body class="py-12">
-    <div class="max-w-5xl mx-auto p-8 bg-white rounded-xl resume-container">
+    <div id="app" class="max-w-5xl mx-auto p-8 rounded-xl resume-container">
         <div class="text-center mb-12 animate-fade-in">
-            <h1 class="text-5xl font-bold text-blue-600 mb-4">Vishnu Nagabushnam</h1>
-            <p class="text-2xl text-gray-600 mb-6">Senior Data Engineer | Azure, AWS, Big Data</p>
-            <div class="flex justify-center space-x-6 text-gray-500">
-                <span class="flex items-center">
-                    <i class="fas fa-map-marker-alt w-5 h-5 mr-2 text-blue-500"></i>
+            <h1 class="text-5xl font-bold gradient-text mb-4">Vishnu Nagabushnam</h1>
+            <p class="text-2xl text-gray-300 mb-6">Senior Data Engineer | Azure, AWS, Big Data</p>
+            <div class="flex justify-center space-x-6 text-gray-300">
+                <span class="flex items-center hover-lift">
+                    <i class="fas fa-map-marker-alt w-5 h-5 mr-2 text-f472b6"></i>
                     Ottawa, ON, Canada
                 </span>
-                <span class="flex items-center">
-                    <i class="fas fa-envelope w-5 h-5 mr-2 text-blue-500"></i>
+                <span class="flex items-center hover-lift">
+                    <i class="fas fa-envelope w-5 h-5 mr-2 text-f472b6"></i>
                     vishnu9211@gmail.com
                 </span>
-                <span class="flex items-center">
-                    <i class="fas fa-phone w-5 h-5 mr-2 text-blue-500"></i>
+                <span class="flex items-center hover-lift">
+                    <i class="fas fa-phone w-5 h-5 mr-2 text-f472b6"></i>
                     +1 905-783-4035
                 </span>
             </div>
         </div>
         
         <div class="space-y-12">
-            <section class="animate-fade-in">
-                <h2 class="section-title text-2xl font-semibold text-gray-800 mb-4">Summary</h2>
-                <p class="text-gray-700 leading-relaxed">
+            <section class="animate-fade-in glass-effect p-6 rounded-lg">
+                <h2 class="section-title text-2xl font-semibold mb-4">Summary</h2>
+                <p class="text-gray-300 leading-relaxed">
                     Senior Data Engineer with 8+ years of experience in cloud platforms (Azure, AWS), big data solutions, 
                     and ETL pipeline optimization. Expertise in designing scalable data warehouses, BI reporting, and infrastructure automation. 
                     Passionate about leveraging cloud and data engineering for innovation and efficiency.
                 </p>
             </section>
 
-            <section class="animate-fade-in">
-                <h2 class="section-title text-2xl font-semibold text-gray-800 mb-4">Areas of Expertise</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <section class="animate-fade-in glass-effect p-6 rounded-lg">
+                <h2 class="section-title text-2xl font-semibold mb-4">Areas of Expertise</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <h3 class="font-semibold text-gray-700 mb-2">Cloud Platforms</h3>
+                        <h3 class="font-semibold text-gray-300 mb-3">Cloud Platforms</h3>
                         <div class="flex flex-wrap gap-2">
                             <span class="skill-tag">Azure</span>
                             <span class="skill-tag">AWS</span>
@@ -190,7 +234,7 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="font-semibold text-gray-700 mb-2">Big Data & ETL</h3>
+                        <h3 class="font-semibold text-gray-300 mb-3">Big Data & ETL</h3>
                         <div class="flex flex-wrap gap-2">
                             <span class="skill-tag">Spark</span>
                             <span class="skill-tag">Hadoop</span>
@@ -201,7 +245,7 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="font-semibold text-gray-700 mb-2">DevOps</h3>
+                        <h3 class="font-semibold text-gray-300 mb-3">DevOps</h3>
                         <div class="flex flex-wrap gap-2">
                             <span class="skill-tag">Terraform</span>
                             <span class="skill-tag">Docker</span>
@@ -212,7 +256,7 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="font-semibold text-gray-700 mb-2">Databases</h3>
+                        <h3 class="font-semibold text-gray-300 mb-3">Databases</h3>
                         <div class="flex flex-wrap gap-2">
                             <span class="skill-tag">Snowflake</span>
                             <span class="skill-tag">Redshift</span>
@@ -226,14 +270,14 @@
             </section>
 
             <section class="animate-fade-in">
-                <h2 class="section-title text-2xl font-semibold text-gray-800 mb-4">Experience</h2>
+                <h2 class="section-title text-2xl font-semibold mb-4">Experience</h2>
                 
                 <div class="experience-card">
                     <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-bold text-blue-600 text-xl">Wellington-Altus</h3>
-                        <span class="text-sm text-gray-500">Ottawa, Canada</span>
+                        <h3 class="font-bold text-f472b6 text-xl">Wellington-Altus</h3>
+                        <span class="text-sm text-gray-400">Ottawa, Canada</span>
                     </div>
-                    <p class="text-sm text-gray-500 mb-2">Senior Data Engineer | Nov 2023 - Present</p>
+                    <p class="text-sm text-gray-400 mb-2">Senior Data Engineer | Nov 2023 - Present</p>
                     <div class="tech-stack">
                         <span class="tech-item">Python</span>
                         <span class="tech-item">Spark</span>
@@ -242,7 +286,7 @@
                         <span class="tech-item">AWS</span>
                         <span class="tech-item">Azure</span>
                     </div>
-                    <ul class="list-disc pl-6 text-gray-700 space-y-2 mt-4">
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mt-4">
                         <li>Experienced Cloud and Big Data Engineer with extensive experience in AWS cloud platforms and Spark technologies.</li>
                         <li>Proficient in managing and optimizing various AWS services, including AWS Managed Apache Airflow, EC2, S3, Lambda, Glue, Athena, Cloud Formation, SNS, and Redshift.</li>
                         <li>Worked on constructing a large-scale batch data pipeline for a portfolio management application, resulting in a 25% decrease in processing time.</li>
@@ -258,10 +302,10 @@
 
                 <div class="experience-card">
                     <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-bold text-blue-600 text-xl">Scotiabank</h3>
-                        <span class="text-sm text-gray-500">Toronto, Canada</span>
+                        <h3 class="font-bold text-f472b6 text-xl">Scotiabank</h3>
+                        <span class="text-sm text-gray-400">Toronto, Canada</span>
                     </div>
-                    <p class="text-sm text-gray-500 mb-2">Manager, Data Engineering | Feb 2023 - Sep 2023</p>
+                    <p class="text-sm text-gray-400 mb-2">Manager, Data Engineering | Feb 2023 - Sep 2023</p>
                     <div class="tech-stack">
                         <span class="tech-item">PySpark</span>
                         <span class="tech-item">SQL</span>
@@ -270,7 +314,7 @@
                         <span class="tech-item">Hadoop</span>
                         <span class="tech-item">GCP</span>
                     </div>
-                    <ul class="list-disc pl-6 text-gray-700 space-y-2 mt-4">
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mt-4">
                         <li>Developed and managed optimal data pipelines to handle large-scale data transformations.</li>
                         <li>Implemented systems and processes for monitoring data quality.</li>
                         <li>Collaborated with the Analytics Technology team on infrastructure upgrades.</li>
@@ -281,10 +325,10 @@
 
                 <div class="experience-card">
                     <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-bold text-blue-600 text-xl">Presidio Cloud Solutions</h3>
-                        <span class="text-sm text-gray-500">Chennai, India</span>
+                        <h3 class="font-bold text-f472b6 text-xl">Presidio Cloud Solutions</h3>
+                        <span class="text-sm text-gray-400">Chennai, India</span>
                     </div>
-                    <p class="text-sm text-gray-500 mb-2">Senior Data Engineer | July 2020 - November 2022</p>
+                    <p class="text-sm text-gray-400 mb-2">Senior Data Engineer | July 2020 - November 2022</p>
                     <div class="tech-stack">
                         <span class="tech-item">Azure</span>
                         <span class="tech-item">AWS</span>
@@ -293,7 +337,7 @@
                         <span class="tech-item">Python</span>
                         <span class="tech-item">Power BI</span>
                     </div>
-                    <ul class="list-disc pl-6 text-gray-700 space-y-2 mt-4">
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mt-4">
                         <li>Architected and managed a comprehensive Azure data migration pipeline handling over ten terabytes of data.</li>
                         <li>Designed and implemented ETL pipelines using Azure Databricks and Synapse.</li>
                         <li>Constructed a data lake in Azure utilizing Azure Data Factory and Synapse Analytics.</li>
@@ -303,50 +347,50 @@
                 </div>
             </section>
 
-            <section class="animate-fade-in">
-                <h2 class="section-title text-2xl font-semibold text-gray-800 mb-4">Certifications</h2>
+            <section class="animate-fade-in glass-effect p-6 rounded-lg">
+                <h2 class="section-title text-2xl font-semibold mb-4">Certifications</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="certification-card">
                         <div class="flex items-center">
-                            <i class="fas fa-certificate text-blue-500 mr-3"></i>
+                            <i class="fas fa-certificate text-f472b6 mr-3"></i>
                             <div>
-                                <h3 class="font-semibold text-gray-800">Microsoft Azure Data Engineer DP-203</h3>
-                                <p class="text-sm text-gray-500">2022</p>
+                                <h3 class="font-semibold text-gray-300">Microsoft Azure Data Engineer DP-203</h3>
+                                <p class="text-sm text-gray-400">2022</p>
                             </div>
                         </div>
                     </div>
                     <div class="certification-card">
                         <div class="flex items-center">
-                            <i class="fas fa-certificate text-blue-500 mr-3"></i>
+                            <i class="fas fa-certificate text-f472b6 mr-3"></i>
                             <div>
-                                <h3 class="font-semibold text-gray-800">AWS Data Engineer - Associate</h3>
-                                <p class="text-sm text-gray-500">In Progress</p>
+                                <h3 class="font-semibold text-gray-300">AWS Data Engineer - Associate</h3>
+                                <p class="text-sm text-gray-400">In Progress</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="animate-fade-in">
-                <h2 class="section-title text-2xl font-semibold text-gray-800 mb-4">Education</h2>
+            <section class="animate-fade-in glass-effect p-6 rounded-lg">
+                <h2 class="section-title text-2xl font-semibold mb-4">Education</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="education-card">
                         <div class="flex items-start">
-                            <i class="fas fa-graduation-cap text-blue-500 mr-3 mt-1"></i>
+                            <i class="fas fa-graduation-cap text-f472b6 mr-3 mt-1"></i>
                             <div>
-                                <h3 class="font-semibold text-gray-800">Master of Computer Applications</h3>
-                                <p class="text-sm text-gray-500">Anna University, Chennai, India</p>
-                                <p class="text-sm text-gray-500">June 2014 - June 2016</p>
+                                <h3 class="font-semibold text-gray-300">Master of Computer Applications</h3>
+                                <p class="text-sm text-gray-400">Anna University, Chennai, India</p>
+                                <p class="text-sm text-gray-400">June 2014 - June 2016</p>
                             </div>
                         </div>
                     </div>
                     <div class="education-card">
                         <div class="flex items-start">
-                            <i class="fas fa-graduation-cap text-blue-500 mr-3 mt-1"></i>
+                            <i class="fas fa-graduation-cap text-f472b6 mr-3 mt-1"></i>
                             <div>
-                                <h3 class="font-semibold text-gray-800">Bachelor of Computer Applications</h3>
-                                <p class="text-sm text-gray-500">Ramakrishna Mission Vivekananda College</p>
-                                <p class="text-sm text-gray-500">July 2011 - April 2014</p>
+                                <h3 class="font-semibold text-gray-300">Bachelor of Computer Applications</h3>
+                                <p class="text-sm text-gray-400">Ramakrishna Mission Vivekananda College</p>
+                                <p class="text-sm text-gray-400">July 2011 - April 2014</p>
                             </div>
                         </div>
                     </div>
@@ -354,9 +398,21 @@
             </section>
         </div>
 
-        <footer class="mt-12 text-center text-gray-500 text-sm border-t pt-6">
+        <footer class="mt-12 text-center text-gray-400 text-sm border-t border-gray-700 pt-6">
             <p>© 2024 Vishnu Nagabushnam | Hosted on GitHub Pages</p>
         </footer>
     </div>
+
+    <script>
+        const { createApp } = Vue
+        
+        createApp({
+            data() {
+                return {
+                    isDark: true
+                }
+            }
+        }).mount('#app')
+    </script>
 </body>
 </html>
