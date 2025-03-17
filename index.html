@@ -20,6 +20,7 @@
             --glass-bg: rgba(255, 255, 255, 0.1);
             --glass-border: rgba(255, 255, 255, 0.2);
             --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            --grid-color: rgba(255, 255, 255, 0.05);
         }
         
         body {
@@ -27,6 +28,11 @@
             min-height: 100vh;
             transition: all 0.3s ease;
             perspective: 1000px;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-position: center center;
         }
         
         body.dark-mode {
@@ -181,16 +187,34 @@
 
         .tech-item {
             font-size: 0.875rem;
-            padding: 0.25rem 0.75rem;
+            padding: 0.5rem 1rem;
             border-radius: 9999px;
             border: 1px solid;
             transition: all 0.3s ease;
             box-shadow: var(--neumorphic-shadow-inset);
             transform-style: preserve-3d;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.25rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(4px);
+        }
+
+        .tech-item i {
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .tech-item:hover i {
+            transform: scale(1.2);
         }
 
         .tech-item:hover {
             transform: translateY(-2px) rotateX(5deg);
+            background: var(--primary-gradient);
+            color: white;
+            border-color: transparent;
         }
 
         @keyframes float {
@@ -527,12 +551,12 @@
                     </div>
                     <p class="text-sm text-gray-400 mb-2">Senior Data Engineer | Nov 2023 - Present</p>
                     <div class="tech-stack">
-                        <span class="tech-item">Python</span>
-                        <span class="tech-item">Spark</span>
-                        <span class="tech-item">SQL</span>
-                        <span class="tech-item">Airflow</span>
-                        <span class="tech-item">AWS</span>
-                        <span class="tech-item">Azure</span>
+                        <span class="tech-item"><i class="fab fa-python"></i>Python</span>
+                        <span class="tech-item"><i class="fas fa-bolt"></i>Spark</span>
+                        <span class="tech-item"><i class="fas fa-database"></i>SQL</span>
+                        <span class="tech-item"><i class="fas fa-wind"></i>Airflow</span>
+                        <span class="tech-item"><i class="fab fa-aws"></i>AWS</span>
+                        <span class="tech-item"><i class="fab fa-azure"></i>Azure</span>
                     </div>
                     <ul class="list-disc pl-6 text-gray-300 space-y-2 mt-4">
                         <li>Experienced Cloud and Big Data Engineer with extensive experience in AWS cloud platforms and Spark technologies.</li>
@@ -555,12 +579,12 @@
                     </div>
                     <p class="text-sm text-gray-400 mb-2">Manager, Data Engineering | Feb 2023 - Sep 2023</p>
                     <div class="tech-stack">
-                        <span class="tech-item">PySpark</span>
-                        <span class="tech-item">SQL</span>
-                        <span class="tech-item">Airflow</span>
-                        <span class="tech-item">Kubernetes</span>
-                        <span class="tech-item">Hadoop</span>
-                        <span class="tech-item">GCP</span>
+                        <span class="tech-item"><i class="fab fa-python"></i>PySpark</span>
+                        <span class="tech-item"><i class="fas fa-database"></i>SQL</span>
+                        <span class="tech-item"><i class="fas fa-wind"></i>Airflow</span>
+                        <span class="tech-item"><i class="fab fa-docker"></i>Kubernetes</span>
+                        <span class="tech-item"><i class="fas fa-elephant"></i>Hadoop</span>
+                        <span class="tech-item"><i class="fab fa-google"></i>GCP</span>
                     </div>
                     <ul class="list-disc pl-6 text-gray-300 space-y-2 mt-4">
                         <li>Developed and managed optimal data pipelines to handle large-scale data transformations.</li>
@@ -578,12 +602,12 @@
                     </div>
                     <p class="text-sm text-gray-400 mb-2">Senior Data Engineer | July 2020 - November 2022</p>
                     <div class="tech-stack">
-                        <span class="tech-item">Azure</span>
-                        <span class="tech-item">AWS</span>
-                        <span class="tech-item">Databricks</span>
-                        <span class="tech-item">Snowflake</span>
-                        <span class="tech-item">Python</span>
-                        <span class="tech-item">Power BI</span>
+                        <span class="tech-item"><i class="fab fa-azure"></i>Azure</span>
+                        <span class="tech-item"><i class="fab fa-aws"></i>AWS</span>
+                        <span class="tech-item"><i class="fas fa-database"></i>Databricks</span>
+                        <span class="tech-item"><i class="fas fa-snowflake"></i>Snowflake</span>
+                        <span class="tech-item"><i class="fab fa-python"></i>Python</span>
+                        <span class="tech-item"><i class="fas fa-chart-line"></i>Power BI</span>
                     </div>
                     <ul class="list-disc pl-6 text-gray-300 space-y-2 mt-4">
                         <li>Architected and managed a comprehensive Azure data migration pipeline handling over ten terabytes of data.</li>
@@ -601,12 +625,12 @@
                     </div>
                     <p class="text-sm text-gray-400 mb-2">Data Engineer | July 2018 - June 2020</p>
                     <div class="tech-stack">
-                        <span class="tech-item">Hadoop</span>
-                        <span class="tech-item">Spark</span>
-                        <span class="tech-item">Hive</span>
-                        <span class="tech-item">Python</span>
-                        <span class="tech-item">SQL</span>
-                        <span class="tech-item">Shell Scripting</span>
+                        <span class="tech-item"><i class="fas fa-elephant"></i>Hadoop</span>
+                        <span class="tech-item"><i class="fas fa-bolt"></i>Spark</span>
+                        <span class="tech-item"><i class="fas fa-database"></i>Hive</span>
+                        <span class="tech-item"><i class="fab fa-python"></i>Python</span>
+                        <span class="tech-item"><i class="fas fa-database"></i>SQL</span>
+                        <span class="tech-item"><i class="fas fa-terminal"></i>Shell Scripting</span>
                     </div>
                     <ul class="list-disc pl-6 text-gray-300 space-y-2 mt-4">
                         <li>Developed and maintained ETL pipelines using Hadoop ecosystem tools.</li>
